@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+
+        <title>Gym Manager</title>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #6C648B;
+    --secondary-color: #6BBAA7;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background-color: var(--primary-color);
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    background-color: #B6A19E;
+    width: 100%;
+    padding: 32px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.links {
+    font-size: 22px;
+}
+
+.links a + a {
+    margin-left: 32px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #777;
+    position: relative;
+}
+
+.links a.active {
+    font-weight: bold;
+    color:  var(--primary-color);
+}
+
+.links a:hover {
+    color: var(--primary-color);
+}
+
+.links a:hover::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
+.links a:hover:after {
+    width: 100%;
+    transition: width 500ms ease-in-out;
+}
+
+/* === CARD ===*/
+
+.card {
+    background-color: white;
+    width: 800px;
+    min-height: 400px;
+
+    margin: 45px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    box-shadow: 0px 2px 6px -2px rgba(0, 0, 0, 0.4);
+
+    /*opacity: 0;*//* <- */ /*when reloading the page, the background white will not appear*/
+    animation-name: up 200ms ease;
+}
+
+@keyframes up {
+    from {
+        opacity: 0;   /*opacity: 0;*/ /* -> */
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.details {
+    padding: 32px;
+}
+
+.details .item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 16px 0;
+}
+
+.details .item:last-child {
+    border:none;
+}
+
+.details .item div:nth-child(1) {
+    color: #aaa;
+    line-height: 24px;
+    font-weight: normal;
+    letter-spacing: 0.7px;
+
+}
+
+.details .item div:nth-child(2) {
+    color: #555;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.details h3 {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.details .item span {
+    padding: 8px 16px;
+    background-color: var(--secondary-color);
+    border-radius: 16px;
+    color: #777;
+    margin-right: 4px;
+    margin-top: 8px;
+    display: inline-block;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+    </style>
+
+
+    </head>
+    <body>
+    <header>
+        <div class="links">
+            <a href="/" class="active">Instructors</a>
+            <a href="/members">Members</a>  
+        </div>
+    </header>
+    </body>
+</html>
+
+{% block content %}
+<div class="card">
+    <section 
+        class="avatar" 
+        style="background: url(https://source.unsplash.com/collection/9659878/900x900) no-repeat center center / cover"></section>
+    <section class="details">
+
+        <h3>Detalhes</h3>
+
+        <div class="item">
+            <div>Instructor</div>
+            <div>Arnold Alois Schwarzenegger</div>
+        </div>
+
+        <div class="item">
+            <div>Idade</div>
+            <div>72</div>
+        </div>
+
+        <div class="item">
+            <div>Sexo</div>
+            <div>Masculino</div>
+        </div>
+
+        <div class="item">
+            <div>Acompanhamento</div>
+            <div>
+            <span>Musculação</span>
+            <span>Força</span>
+            <span>Hipertrofia</span>
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Desde</div>
+            <div>30/07/1963</div>
+        </div>
+ 
+    </section>
+</div>
+
+{% endblock content %}

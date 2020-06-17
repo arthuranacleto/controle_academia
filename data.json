@@ -1,0 +1,31 @@
+{
+  "instructors": [
+    {
+      "id": 1,
+      "name": "Arnold",
+      "avatar_url": "https://source.unsplash.com/collection/9659878/900x900",
+      "birth": -392083200000,
+      "gender": "M",
+      "services": "Musculação",
+      "created_at": 1592334360874
+    },
+    {
+      "id": 2,
+      "name": "Allana",
+      "avatar_url": "http://www.allana",
+      "birth": 1031529600000,
+      "gender": "F",
+      "services": "corrida",
+      "created_at": 1592337063058
+    },
+    {
+      "id": 3,
+      "name": "Nilda",
+      "avatar_url": "http://www.nilda",
+      "birth": 336960000000,
+      "gender": "F",
+      "services": "Caminhada, HIT",
+      "created_at": 1592344205508
+    }
+  ]
+}
