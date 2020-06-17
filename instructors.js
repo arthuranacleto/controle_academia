@@ -1,6 +1,10 @@
 const fs = require('fs')
 const data = require("./data.json")
 const { age } = require('./calculoage')
+const { render } = require('nunjucks')
+const { date } = require('./age')
+
+
 
 exports.show = function(req, res) {
 
@@ -59,4 +63,36 @@ exports.post = function(req, res) {
     })
 
     //return res.send(req.body) espere para gravar o arquivo
+}
+
+//edit
+exports.edit = function(req, res) {
+    
+    const { id } = req.params
+
+    const foundInstructor = data.instructors.find(function(instructor) {
+        return instructor.id == id
+    })
+
+    if (!foundInstructor) return res.send("Instructor not found!") 
+
+    const instructor = {
+        ...foundInstructor,
+        brirth: date(foundInstructor.birth)
+    }
+
+    return res.render('instructors/edit', { instructor })
+}
+
+
+
+
+exports.put = function(req, res) {
+    const { id } = req.body
+
+    const foundInstructor = data.instructors.find(function(instructor) {
+        return instructor.id == id
+    })
+
+    if (!foundInstructor) return res.send("Instructor not found!")
 }
