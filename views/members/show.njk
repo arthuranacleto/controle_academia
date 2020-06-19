@@ -162,7 +162,8 @@
                 font-weight: normal;
             }
 
-            button[type="submit"] {
+            button[type="submit"],
+            .button {
                 padding: 8px 32px;
                 background-color: var(--primary-color);
                 color: white;
@@ -172,9 +173,11 @@
                 font-size: 16px;
             }
 
-            #form-delete button[type="submit"] {
-                margin-top: 8px;
-                background-color: lightcoral;
+            a.button {
+                display: block;
+                box-sizing: border-box;
+                text-align: center;
+                text-decoration: none;
             }
 
     </style>
@@ -182,37 +185,51 @@
     <body>
     <header>
         <div class="links">
-            <a href="/" class="active">Instructors</a>
+            <a href="/instructors" >Instructors</a>
             <a href="/members">Members</a>  
         </div>
     </header>
+
 {% block content %}
-
-    <div class="card">
-
+<div class="card">
     <section 
         class="avatar" 
-        style="background: url(https://source.unsplash.com/collection/9659878/900x900) no-repeat center center / cover">
-        </section>
+        style="background: url({{ instructor.avatar_url }}) no-repeat center center / cover"></section>
     <section class="details">
 
-  <form class="card" method="POST" action="/instructors?_method=PUT">
-        <h3>Editar Instrutor</h3>
+        <h3>Detalhes</h3>
 
-        {% include 'instructors/fields.njk' %}
- <input type="hidden" name="id" value={{instructors.id}}>
-    </form>
+        <div class="item">
+            <div>Instructor</div>
+            <div>{{ instructor.name }}</div>
+        </div>
 
-    <form id="form-delete" action="/instructors?_method=DELETE" method="post">
-        <input type="hidden" name="id" value={{instructors.id}}>
-        <button type="submit">Deletar</button>
-    </form>
+        <div class="item">
+            <div>Idade</div>
+            <div>{{ instructor.age }}</div>
+        </div>
+        <div class="item">
+            <div>Sexo</div>
+            <div>{{ "Masculino" if instructor.gender == "M" else "Feminino" }}</div>
+        </div>
+
+        <div class="item">
+            <div>Acompanhamento</div>
+            <div>
+                {% for service in instructor.services %}
+                <span>{{ service }}</span>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="item">
+            <div>Desde</div>
+            <div>{{ instructor.created_at }}</div>
+        </div>
+ 
+        <a href="/instructors/{{ instructor.id }}" class="button">Editar</a>
 
     </section>
-        
 </div>
 
-{% endblock %}
-
-</body>
-</html>
+{% endblock content %}
